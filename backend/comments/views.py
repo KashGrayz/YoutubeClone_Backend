@@ -1,16 +1,13 @@
-from django.shortcuts import render
-from django.shortcuts import get_object_or_404
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from rest_framework import status
+from django.shortcuts import get_object_or_404
 from authentication.models import User
-from serializer import CommentSerializer
-from models import Comments
-from rest_framework.decorators import permission_classes
+from .serializers import CommentSerializer
+from .models import Comments
 from django.contrib.auth.models import Permission
 from rest_framework import viewsets
-from rest_framework.permissions import AllowAny
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import AllowAny, IsAuthenticated
 
 # Create your views here.
 
@@ -23,8 +20,6 @@ from rest_framework.permissions import IsAuthenticated
 # Returns a 200 status code. 
 # Responds with all comments from the database that are related to the video id sent in the URL. 
 
-
-
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def getAllComments(request, vpk):
@@ -32,9 +27,7 @@ def getAllComments(request, vpk):
         comments = Comments.objects.filter(video_id=vpk)
         serializer = CommentSerializer(comments, many=True)
         return Response(serializer.data)
-
    
-
 
 #POST request:
 
@@ -46,12 +39,12 @@ def getAllComments(request, vpk):
 
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
-def addComment(request):
-    if request.method == 'POST':
-        serializer = CommentSerializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
+def addComment(request, vpk):
+    'User ', f"{request.user.id} {request.user.email} {request.user.username}"
+    serializer = CommentSerializer(data=request.data)
+    serializer.is_valid(raise_exception=True)
+    serializer.save()
+    return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
 #PUT request: 
@@ -63,38 +56,17 @@ def addComment(request):
 # Returns a 200 status code.  
 # Responds with the newly updated comment object.  
 
+@api_view(['PUT'])
+@permission_classes([IsAuthenticated])
+def updateComment(request, cpk):
+    'User ', f"{request.user.id} {request.user.email} {request.user.username}"
+    comment = get_object_or_404(Comments, id=cpk)
+    # Comments.objects.filter(id=cpk)
+    serializer = CommentSerializer(comment, data=request.data)
+    serializer.is_valid(raise_exception=True)
+    serializer.save()
+    return Response(serializer.data, status=status.HTTP_200_OK)
 
 
 
 
-
-
-
-# Create your views here.
-# @api_view(['GET', 'POST'])
-# def cards_list(request, cpk):
-#     if request.method == 'GET':
-#         cards = Card.objects.filter(collection_id=cpk)
-#         serializer = CardSerializer(cards, many=True)
-#         return Response(serializer.data)
-#     elif request.method == 'POST':
-#         serializer = CardSerializer(data=request.data)
-#         serializer.is_valid(raise_exception=True)
-#         serializer.save(collection_id=cpk)
-#         return Response(serializer.data, status=status.HTTP_201_CREATED)
-
-
-# @api_view(['GET', 'PUT', 'DELETE'])
-# def card_detail(request, cpk, pk):
-#     card = get_object_or_404(Card, pk=pk)
-#     if request.method == 'GET':
-#         serializer = CardSerializer(card)
-#         return Response(serializer.data)
-#     elif request.method == 'PUT':
-#         serializer = CardSerializer(card, data=request.data)
-#         serializer.is_valid(raise_exception=True)
-#         serializer.save(collection_id=cpk)
-#         return Response(serializer.data)
-#     elif request.method == 'DELETE':
-#         card.delete()
-#         return Response(status=status.HTTP_204_NO_CONTENT)
