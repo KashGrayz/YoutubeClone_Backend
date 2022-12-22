@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.decorators import api_view, permission_classes
 from comments.models import Comments
-from serializer import ReplySerializer
+from .serializer import ReplySerializer
 from .models import Replies
 
 
@@ -17,12 +17,12 @@ from .models import Replies
 # Returns a 200 status code. 
 # Responds with all replies from the database that are related to the comment id sent in the URL. 
 
-@api_view(['GET'])
-@permission_classes([AllowAny])
-def get_all_replies(request,comment_id):
-    replies = Replies.objects.all(comments_id=comment_id)
-    serializer = ReplySerializer(replies, many=True)
-    return Response(serializer.data)
+# @api_view(['GET'])
+# @permission_classes([AllowAny])
+# def get_all_replies(request, comment):
+#     replies = Replies.objects.all(comments_id=comment)
+#     serializer = ReplySerializer(replies, many=True)
+#     return Response(serializer.data)
 
 
 
@@ -37,36 +37,28 @@ def get_all_replies(request,comment_id):
 
 @api_view(['GET', 'POST'])
 @permission_classes([IsAuthenticated])
-def user_replies(request,comments_id):
+def user_replies(request, cpk):
     print(
         'User', f"{request.user.id} {request.user.email} {request.user.username}")
-    if request.method == "POST":
-        serializer = ReplySerializer(data=request.data, comments_id=comments_id)
-        if serializer.is_valid():
-            serializer.save(request.data)
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    elif request.method == "GET":
-        replies = Replies.objects.filter(comments_id)
+
+    if request.method == "GET":
+        replies = Replies.objects.filter(comment_id = cpk)
         serializer = ReplySerializer(replies, many=True)
         return Response(serializer.data)
 
-    
-
-
-
-
-
+    elif request.method == 'POST':
+        request.data['commebt_id'] = cpk
+        serializer = ReplySerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save(cpk)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
 
 # # Create your views here.
 # @api_view(['GET', 'POST'])
 # def cards_list(request, cpk):
-#     if request.method == 'GET':
-#         cards = Card.objects.filter(collection_id=cpk)
-#         serializer = CardSerializer(cards, many=True)
-#         return Response(serializer.data)
+
 #     elif request.method == 'POST':
 #         serializer = CardSerializer(data=request.data)
 #         serializer.is_valid(raise_exception=True)
