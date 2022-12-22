@@ -19,8 +19,8 @@ from .models import Replies
 
 @api_view(['GET'])
 @permission_classes([AllowAny])
-def get_all_replies(request,comment_id):
-    replies = Replies.objects.all(comments_id=comment_id)
+def get_all_replies(request,cpk):
+    replies = Replies.objects.all(id=cpk)
     serializer = ReplySerializer(replies, many=True)
     return Response(serializer.data)
 
@@ -37,17 +37,17 @@ def get_all_replies(request,comment_id):
 
 @api_view(['GET', 'POST'])
 @permission_classes([IsAuthenticated])
-def user_replies(request,comments_id):
+def user_replies(request,cpk):
     print(
         'User', f"{request.user.id} {request.user.email} {request.user.username}")
     if request.method == "POST":
-        serializer = ReplySerializer(data=request.data, comments_id=comments_id)
+        serializer = ReplySerializer(data=request.data,id=cpk)
         if serializer.is_valid():
             serializer.save(request.data)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     elif request.method == "GET":
-        replies = Replies.objects.filter(comments_id)
+        replies = Replies.objects.filter(id=cpk)
         serializer = ReplySerializer(replies, many=True)
         return Response(serializer.data)
 
