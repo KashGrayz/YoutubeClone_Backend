@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "1684ff5e-38a6-4675-8630-366ab0724137",
+		"_postman_id": "712231e4-5521-4c63-86e9-acd0900e31f5",
 		"name": "DRF_JWT_Backend",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "24341648"
+		"_exporter_id": "24341228"
 	},
 	"item": [
 		{
@@ -232,7 +232,10 @@
 					"name": "GET all comments on video",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": ""
+						}
 					},
 					"response": []
 				},
@@ -243,13 +246,13 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjcyNTkzMTgxLCJpYXQiOjE2NzE3MjkxODEsImp0aSI6ImE0OGQ5NDI5NDc4YTRlNjE5OGZmZWQ5YWM2Y2ZlMTM2IiwidXNlcl9pZCI6MiwidXNlcm5hbWUiOiJkYW50aGVtYW4iLCJmaXJzdF9uYW1lIjoiRGFuaWVsIn0.dNDSv-otK_siSjEmYo5Ro-e1Di4E6ppctnUxCZ2yqEU",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjcyNjAwMzg0LCJpYXQiOjE2NzE3MzYzODQsImp0aSI6ImU3ZThmNTJlNTVhZTQ4Y2I4ZGZiZTkwM2NlMDEyNGY4IiwidXNlcl9pZCI6MywidXNlcm5hbWUiOiJkYW50aGVtYW4iLCJmaXJzdF9uYW1lIjoiRGFuaWVsIn0.YBMBrH05FFxraA9_v8ozO0TMTG6JroK6M3wP2BC17B4",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"user\": \"1\",\r\n    \"video_id\": \"jfKfPfyJRdk\",\r\n    \"text\": \"So chill!\",\r\n    \"likes\": 0,\r\n    \"dislikes\": 0\r\n}",
+							"raw": "{\r\n    \"user\": \"3\",\r\n    \"video_id\": \"jfKfPfyJRdk\",\r\n    \"text\": \"So chill!\",\r\n    \"likes\": 0,\r\n    \"dislikes\": 0\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -283,13 +286,13 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjcyNTkzMTgxLCJpYXQiOjE2NzE3MjkxODEsImp0aSI6ImE0OGQ5NDI5NDc4YTRlNjE5OGZmZWQ5YWM2Y2ZlMTM2IiwidXNlcl9pZCI6MiwidXNlcm5hbWUiOiJkYW50aGVtYW4iLCJmaXJzdF9uYW1lIjoiRGFuaWVsIn0.dNDSv-otK_siSjEmYo5Ro-e1Di4E6ppctnUxCZ2yqEU",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjcyNjAwMzg0LCJpYXQiOjE2NzE3MzYzODQsImp0aSI6ImU3ZThmNTJlNTVhZTQ4Y2I4ZGZiZTkwM2NlMDEyNGY4IiwidXNlcl9pZCI6MywidXNlcm5hbWUiOiJkYW50aGVtYW4iLCJmaXJzdF9uYW1lIjoiRGFuaWVsIn0.YBMBrH05FFxraA9_v8ozO0TMTG6JroK6M3wP2BC17B4",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\": 2,\r\n    \"user\": \"1\",\r\n    \"video_id\": \"jfKfPfyJRdk\",\r\n    \"text\": \"So chill, I love this stream!\",\r\n    \"likes\": 0,\r\n    \"dislikes\": 0\r\n}",
+							"raw": "{\r\n    \"id\": 2,\r\n    \"user\": \"3\",\r\n    \"video_id\": \"jfKfPfyJRdk\",\r\n    \"text\": \"So chill, I love this stream!\",\r\n    \"likes\": 0,\r\n    \"dislikes\": 0\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -310,6 +313,59 @@
 								"api",
 								"comments",
 								"update",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Replies",
+			"item": [
+				{
+					"name": "Get_Replies",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Post_New_Reply",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjcyNjAwMzg0LCJpYXQiOjE2NzE3MzYzODQsImp0aSI6ImU3ZThmNTJlNTVhZTQ4Y2I4ZGZiZTkwM2NlMDEyNGY4IiwidXNlcl9pZCI6MywidXNlcm5hbWUiOiJkYW50aGVtYW4iLCJmaXJzdF9uYW1lIjoiRGFuaWVsIn0.YBMBrH05FFxraA9_v8ozO0TMTG6JroK6M3wP2BC17B4",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\n{\n    \"text\": \"Sick Comment!\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/replies/1/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"replies",
 								"1",
 								""
 							]
