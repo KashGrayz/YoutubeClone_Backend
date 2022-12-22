@@ -3,6 +3,4 @@ from . import views
 
 urlpatterns = [
     path('<cpk>/', views.user_replies),
-   
 ]
-

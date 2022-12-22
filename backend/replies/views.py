@@ -17,13 +17,6 @@ from .models import Replies
 # Returns a 200 status code. 
 # Responds with all replies from the database that are related to the comment id sent in the URL. 
 
-# @api_view(['GET'])
-# @permission_classes([AllowAny])
-# def get_all_replies(request, comment):
-#     replies = Replies.objects.all(comments_id=comment)
-#     serializer = ReplySerializer(replies, many=True)
-#     return Response(serializer.data)
-
 
 
 #POST request: 
@@ -37,12 +30,18 @@ from .models import Replies
 
 @api_view(['GET', 'POST'])
 @permission_classes([IsAuthenticated])
-def user_replies(request, cpk):
+def user_replies(request,cpk):
     print(
         'User', f"{request.user.id} {request.user.email} {request.user.username}")
-
-    if request.method == "GET":
-        replies = Replies.objects.filter(comment_id = cpk)
+    if request.method == "POST":
+        request.data["comment_id"] = cpk
+        serializer = ReplySerializer(data=request.data)
+        if serializer.is_valid(raise_exception=True):
+            serializer.save(user=request.user)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    elif request.method == "GET":
+        replies = Replies.objects.filter(comment_id=cpk)
         serializer = ReplySerializer(replies, many=True)
         return Response(serializer.data)
 
