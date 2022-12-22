@@ -1,11 +1,10 @@
-from django.shortcuts import render
-from django.shortcuts import get_object_or_404
-from rest_framework.decorators import api_view
-from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated, AllowAny
+from rest_framework.decorators import api_view, permission_classes
 from comments.models import Comments
-from authentication.models import User
 from serializer import ReplySerializer
+from .models import Replies
 
 
 # Create your views here.
@@ -18,6 +17,12 @@ from serializer import ReplySerializer
 # Returns a 200 status code. 
 # Responds with all replies from the database that are related to the comment id sent in the URL. 
 
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def get_all_replies(request,comment_id):
+    replies = Replies.objects.all(comments_id=comment_id)
+    serializer = ReplySerializer(replies, many=True)
+    return Response(serializer.data)
 
 
 
@@ -30,7 +35,23 @@ from serializer import ReplySerializer
 # Returns a 201 status code.  
 # Responds with the newly created reply object.  
 
+@api_view(['GET', 'POST'])
+@permission_classes([IsAuthenticated])
+def user_replies(request,comments_id):
+    print(
+        'User', f"{request.user.id} {request.user.email} {request.user.username}")
+    if request.method == "POST":
+        serializer = ReplySerializer(data=request.data, comments_id=comments_id)
+        if serializer.is_valid():
+            serializer.save(request.data)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    elif request.method == "GET":
+        replies = Replies.objects.filter(comments_id)
+        serializer = ReplySerializer(replies, many=True)
+        return Response(serializer.data)
 
+    
 
 
 
