@@ -16,7 +16,6 @@ export default function VideoPlayer({getVideoBySearchTerm, featuredVideo, setFea
             // src={`https://www.youtube.com/embed/XXYlFuWEuKI?autoplay=1&mute=1&origin=http://example.com`}
             // src={`https://www.youtube.com/embed/${featuredVideo?.items[0]?.id.videoId}?autoplay=1&mute=1&origin=http://example.com`}
             src={`https://www.youtube.com/embed/${featuredVideo[0]?.id.videoId}?autoplay=1&mute=1&origin=http://example.com`}
-
             frameborder="0">
         </iframe>
     </div>

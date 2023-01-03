@@ -6,6 +6,7 @@ import useAuth from "../../hooks/useAuth";
 import axios from "axios";
 import SearchPage from "../../components/SearchPage/SearchPage";
 import VideoPlayer from "../../components/VideoPlayer/VideoPlayer";
+import RelatedVideos from "../../components/RelatedVideos/RelatedVideos";
 
 
 const HomePage = ({getVideoBySearchTerm, featuredVideo, setFeaturedVideo, criteria, setCriteria}) => {
@@ -36,10 +37,17 @@ const HomePage = ({getVideoBySearchTerm, featuredVideo, setFeaturedVideo, criter
 
   
   return (
-    <div className="container">
-       <SearchPage criteria = {criteria} setCriteria = {setCriteria} getVideoBySearchTerm = {getVideoBySearchTerm} featuredVideo = {featuredVideo} setFeaturedVideo = {setFeaturedVideo}/>
-       <h3>Welcome {user.username}!</h3>
-       <VideoPlayer criteria = {criteria} setCriteria = {setCriteria} getVideoBySearchTerm = {getVideoBySearchTerm} featuredVideo = {featuredVideo} setFeaturedVideo = {setFeaturedVideo}/>
+    <div>
+      <div className = 'featured-and-related'>
+ 
+        <SearchPage criteria = {criteria} setCriteria = {setCriteria} getVideoBySearchTerm = {getVideoBySearchTerm} featuredVideo = {featuredVideo} setFeaturedVideo = {setFeaturedVideo}/>
+      
+
+      <h3 className = 'welcome'>Welcome {user.username}!</h3>
+        <VideoPlayer criteria = {criteria} setCriteria = {setCriteria} getVideoBySearchTerm = {getVideoBySearchTerm} featuredVideo = {featuredVideo} setFeaturedVideo = {setFeaturedVideo} className = 'featured'/>
+        
+        <RelatedVideos featuredVideo = {featuredVideo} setFeaturedVideo = {setFeaturedVideo} className = 'thumbnails'/>
+      </div>
       {/* {cars &&
         cars.map((car) => (
           <p key={car.id}>
