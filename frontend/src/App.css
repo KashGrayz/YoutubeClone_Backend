@@ -45,11 +45,12 @@ button:hover {
 
 .featured-and-related{
   display: grid; 
-  grid-template-areas: 
+  /* grid-template-areas: 
   'welcome search'
   'featured thumbnails'
-  'info thumbnails';
-  grid-auto-columns: repeat(2, 1fr); 
+  'info thumbnails'; */
+  /* grid-auto-columns: repeat(2, 1fr);  */
+  grid-template-columns:  fit-content(40%) auto;
   justify-items: center;
   align-content: center;
   align-items: top;
@@ -58,7 +59,9 @@ button:hover {
 }
 
 .featured{
-  grid-area: featured;
+  /* grid-area: featured; */
+  grid-column: 1/2;
+  grid-row: 2;
 }
 
 
@@ -87,7 +90,9 @@ button:hover {
   padding-top: 2rem;
   height: 3rem;
   align-items: center;
-  grid-area: search;
+  /* grid-area: search; */
+  grid-column: 3; 
+  grid-row: 1;
 } 
 
 .search-input{
@@ -99,7 +104,9 @@ button:hover {
 }
 
 .thumbnails{
-  grid-area: thumbnails;
+  /* grid-area: thumbnails; */
+  grid-column:3;
+  grid-row: 2/3;
   display: flex;
   flex-direction: column;
 }
@@ -109,7 +116,10 @@ button:hover {
 }
 
 .welcome{
-  grid-area: welcome; 
+  /* grid-area: welcome;  */
+  grid-column: 1/2;
+  grid-row: 1; 
+  padding-top: 1rem;
   display: flex; 
   justify-content: left;
 }
@@ -117,6 +127,5 @@ button:hover {
 .video-info{
   grid-area: info;
   text-align: left;
-  max-width: 75%;
-  padding: 1rem;
+  padding-top: 1rem;
 }
