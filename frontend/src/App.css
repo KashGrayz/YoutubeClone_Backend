@@ -16,7 +16,7 @@ html {
 }
 
 p {
-  font-size: .5rem;
+  font-size: 1rem;
 }
 
 button {
@@ -42,11 +42,13 @@ button:hover {
   overflow: auto;
   text-align: center;
 }
+
 .featured-and-related{
   display: grid; 
   grid-template-areas: 
   'welcome search'
-  'featured thumbnails';
+  'featured thumbnails'
+  'info thumbnails';
   grid-auto-columns: repeat(2, 1fr); 
   justify-items: center;
   align-content: center;
@@ -96,7 +98,6 @@ button:hover {
   padding-left: 1rem;
 }
 
-
 .thumbnails{
   grid-area: thumbnails;
   display: flex;
@@ -111,4 +112,11 @@ button:hover {
   grid-area: welcome; 
   display: flex; 
   justify-content: left;
+}
+
+.video-info{
+  grid-area: info;
+  text-align: left;
+  max-width: 75%;
+  padding: 1rem;
 }

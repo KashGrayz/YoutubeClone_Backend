@@ -11,7 +11,6 @@ export default function RelatedVideos({featuredVideo, setFeaturedVideo}) {
         debugger;
         let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?relatedToVideoId=${featuredVideo[0]?.id?.videoId}&type=video&key=${process.env.REACT_APP_API_KEY}`);
         setRelatedVideos(response.data.items);
-        console.log(response.data);
         }
 
         // Test video id: TLu1bScP4Fk

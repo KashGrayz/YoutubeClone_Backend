@@ -37,17 +37,15 @@ const HomePage = ({getVideoBySearchTerm, featuredVideo, setFeaturedVideo, criter
 
   
   return (
-    <div>
-      <div className = 'featured-and-related'>
+    <div className = 'featured-and-related'>
  
         <SearchPage criteria = {criteria} setCriteria = {setCriteria} getVideoBySearchTerm = {getVideoBySearchTerm} featuredVideo = {featuredVideo} setFeaturedVideo = {setFeaturedVideo}/>
       
-
-      <h3 className = 'welcome'>Welcome {user.username}!</h3>
+        <h3 className = 'welcome'>Welcome {user.username}!</h3>
+        
         <VideoPlayer criteria = {criteria} setCriteria = {setCriteria} getVideoBySearchTerm = {getVideoBySearchTerm} featuredVideo = {featuredVideo} setFeaturedVideo = {setFeaturedVideo} className = 'featured'/>
         
         <RelatedVideos featuredVideo = {featuredVideo} setFeaturedVideo = {setFeaturedVideo} className = 'thumbnails'/>
-      </div>
       {/* {cars &&
         cars.map((car) => (
           <p key={car.id}>
