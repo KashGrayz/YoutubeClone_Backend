@@ -11,7 +11,6 @@ import RegisterPage from "./pages/RegisterPage/RegisterPage";
 // Component Imports
 import Navbar from "./components/NavBar/NavBar";
 import Footer from "./components/Footer/Footer";
-import { relatedData } from "./components/VideoPlayer/VideoList";
 
 
 // Util Imports
@@ -30,10 +29,22 @@ const[criteria, setCriteria] = useState();
 
 
   async function getVideoBySearchTerm(searchTerm) {
-    let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?q=${searchTerm}&key=${process.env.REACT_APP_API_KEY}`);
-    setFeaturedVideo(response.data.items);
-    console.log(response.data.items);
+    try{
+      let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?q=${searchTerm}&key=${process.env.REACT_APP_API_KEY}`);
+      if (response.status == 400){
+        alert('The term you searched for does not exist. Please try another search.');
+      }
+      
+      else{
+        setFeaturedVideo(response.data.items);
+      }
     }
+    catch (error) {
+        alert('Youtube API queries exhausted. Try again tomorrow.');
+      }
+    }
+    
+  
 
 
   return (
@@ -51,7 +62,7 @@ const[criteria, setCriteria] = useState();
         <Route path="/login" element={<LoginPage/>} />
 
       </Routes>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }

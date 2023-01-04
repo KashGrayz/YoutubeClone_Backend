@@ -7,6 +7,7 @@ import axios from "axios";
 import SearchPage from "../../components/SearchPage/SearchPage";
 import VideoPlayer from "../../components/VideoPlayer/VideoPlayer";
 import RelatedVideos from "../../components/RelatedVideos/RelatedVideos";
+import Comments from "../../components/Comments/Comments";
 
 
 const HomePage = ({getVideoBySearchTerm, featuredVideo, setFeaturedVideo, criteria, setCriteria}) => {
@@ -15,9 +16,6 @@ const HomePage = ({getVideoBySearchTerm, featuredVideo, setFeaturedVideo, criter
   //TODO: Add an AddCars Page to add a car for a logged in user's garage
   const [user, token] = useAuth();
   // const [cars, setCars] = useState([]);
-
- 
-
 
   // useEffect(() => {
   //   const fetchCars = async () => {
@@ -35,7 +33,11 @@ const HomePage = ({getVideoBySearchTerm, featuredVideo, setFeaturedVideo, criter
   //   fetchCars();
   // }, [token]);
 
-  
+  const[comment, setComment] = useState('')
+
+
+
+
   return (
     <div className = 'featured-and-related'>
  
@@ -46,12 +48,16 @@ const HomePage = ({getVideoBySearchTerm, featuredVideo, setFeaturedVideo, criter
         <VideoPlayer criteria = {criteria} setCriteria = {setCriteria} getVideoBySearchTerm = {getVideoBySearchTerm} featuredVideo = {featuredVideo} setFeaturedVideo = {setFeaturedVideo} className = 'featured'/>
         
         <RelatedVideos featuredVideo = {featuredVideo} setFeaturedVideo = {setFeaturedVideo} className = 'thumbnails'/>
+
+        <Comments featuredVideo = {featuredVideo} comment = {comment} setComment = {setComment} className = 'comments'/>
+
       {/* {cars &&
         cars.map((car) => (
           <p key={car.id}>
             {car.year} {car.model} {car.make}
           </p>
         ))} */}
+
     </div>
   );
 };
