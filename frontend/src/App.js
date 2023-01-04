@@ -28,6 +28,7 @@ const[featuredVideo, setFeaturedVideo] = useState([{id: { kind: "youtube#video",
 
 const[criteria, setCriteria] = useState();
 
+
   async function getVideoBySearchTerm(searchTerm) {
     let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?q=${searchTerm}&key=${process.env.REACT_APP_API_KEY}`);
     setFeaturedVideo(response.data.items);

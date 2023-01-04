@@ -16,8 +16,6 @@ export default function SearchPage({criteria, setCriteria, getVideoBySearchTerm,
   }
     
   
-
-
   return (
     <div>
        <form onSubmit ={handleSubmit} className = 'search'>

@@ -3,7 +3,6 @@ import React, { useState , useEffect} from 'react';
 
 export default function VideoPlayer({getVideoBySearchTerm, featuredVideo, setFeaturedVideo, criteria, setCriteria}) {
 
-
     return (
     <div>
         <iframe

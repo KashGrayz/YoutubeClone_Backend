@@ -50,7 +50,7 @@ button:hover {
   grid-auto-columns: repeat(2, 1fr); 
   justify-items: center;
   align-content: center;
-  align-items: center;
+  align-items: top;
   row-gap: 1rem;
   justify-content: space-evenly;
 }

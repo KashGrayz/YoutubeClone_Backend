@@ -2,15 +2,14 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 
-export default function RelatedVideos(featuredVideo, setFeaturedVideo) {
+export default function RelatedVideos({featuredVideo, setFeaturedVideo}) {
     const[relatedVideos, setRelatedVideos] = useState([]);
 
-    function handleClick(video) {
-        setFeaturedVideo(video);
-        }
+    
 
     async function getRelatedVideos() {
-        let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?relatedToVideoId=TLu1bScP4Fk&type=video&key=${process.env.REACT_APP_API_KEY}`);
+        debugger;
+        let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?relatedToVideoId=${featuredVideo[0]?.id?.videoId}&type=video&key=${process.env.REACT_APP_API_KEY}`);
         setRelatedVideos(response.data.items);
         console.log(response.data);
         }
@@ -21,6 +20,9 @@ export default function RelatedVideos(featuredVideo, setFeaturedVideo) {
         getRelatedVideos();
     }, [featuredVideo])
     
+    function handleClick(video) {
+        setFeaturedVideo(video);
+        }
     
 
   return (
