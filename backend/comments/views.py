@@ -40,10 +40,11 @@ def getAllComments(request, vpk):
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def addComment(request, vpk):
+    request.data["video_id"] = vpk
     'User ', f"{request.user.id} {request.user.email} {request.user.username}"
     serializer = CommentSerializer(data=request.data)
     serializer.is_valid(raise_exception=True)
-    serializer.save()
+    serializer.save(user=request.user)
     return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 

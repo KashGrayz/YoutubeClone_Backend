@@ -26,6 +26,7 @@ function App() {
 const[featuredVideo, setFeaturedVideo] = useState([{id: { kind: "youtube#video", videoId: "TLu1bScP4Fk" }}]);
 
 const[criteria, setCriteria] = useState();
+const[comments, setComments] = useState([]); 
 
 
   async function getVideoBySearchTerm(searchTerm) {
@@ -54,7 +55,7 @@ const[criteria, setCriteria] = useState();
 
         <Route path="/" element={
           <PrivateRoute>
-              <HomePage featuredVideo = {featuredVideo} setFeaturedVideo = {setFeaturedVideo} getVideoBySearchTerm = {getVideoBySearchTerm} criteria = {criteria} setCriteria = {setCriteria}/>
+              <HomePage featuredVideo = {featuredVideo} setFeaturedVideo = {setFeaturedVideo} getVideoBySearchTerm = {getVideoBySearchTerm} criteria = {criteria} setCriteria = {setCriteria} comments = {comments} setComments = {setComments}/>
           </PrivateRoute>}/>
 
         <Route path="/register" element={<RegisterPage/>} />
