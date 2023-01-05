@@ -7,7 +7,7 @@ export default function VideoPlayer({getVideoBySearchTerm, featuredVideo, setFea
     const[description, setDescription] = useState('');
 
     async function getTitle(){
-        let response = await axios.get(`https://www.googleapis.com/youtube/v3/videos?part=snippet&id=${featuredVideo[0]?.id.videoId}&key=${process.env.REACT_APP_API_KEY}`)
+        let response = await axios.get(`https://www.googleapis.com/youtube/v3/videos?part=snippet&id=${featuredVideo[0]?.id.videoId}&key=AIzaSyBbGwyZU134Y8hFVjyuTvl7U4mmP9GYQ5Y`)
         setTitle(response.data.items[0].snippet.title)
         setDescription(response.data.items[0].snippet.description)
     } 
