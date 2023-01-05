@@ -11,7 +11,7 @@ import RegisterPage from "./pages/RegisterPage/RegisterPage";
 // Component Imports
 import Navbar from "./components/NavBar/NavBar";
 import Footer from "./components/Footer/Footer";
-import { relatedData } from "./components/VideoPlayer/VideoList";
+
 
 
 // Util Imports
@@ -30,10 +30,15 @@ const[criteria, setCriteria] = useState();
 
 
   async function getVideoBySearchTerm(searchTerm) {
-    let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?q=${searchTerm}&key=${process.env.REACT_APP_API_KEY}`);
+    let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?q=${searchTerm}&key=AIzaSyBbGwyZU134Y8hFVjyuTvl7U4mmP9GYQ5Y`);
     setFeaturedVideo(response.data.items);
     console.log(response.data.items);
     }
+    
+      
+    
+    
+    
 
 
   return (

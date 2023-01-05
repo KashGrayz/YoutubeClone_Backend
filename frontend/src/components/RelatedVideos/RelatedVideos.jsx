@@ -8,8 +8,7 @@ export default function RelatedVideos({featuredVideo, setFeaturedVideo}) {
     
 
     async function getRelatedVideos() {
-        debugger;
-        let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?relatedToVideoId=${featuredVideo[0]?.id?.videoId}&type=video&key=${process.env.REACT_APP_API_KEY}`);
+        let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?relatedToVideoId=${featuredVideo[0]?.id?.videoId}&type=video&key=AIzaSyBbGwyZU134Y8hFVjyuTvl7U4mmP9GYQ5Y`);
         setRelatedVideos(response.data.items);
         }
 
