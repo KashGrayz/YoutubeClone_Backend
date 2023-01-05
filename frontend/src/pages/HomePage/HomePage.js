@@ -8,7 +8,7 @@ import RelatedVideos from "../../components/RelatedVideos/RelatedVideos";
 import CommentForm from "../../components/Comments/CommentForm";
 import CommentList from "../../components/Comments/CommentList";
 
-const HomePage = ({getVideoBySearchTerm, featuredVideo, setFeaturedVideo, criteria, setCriteria, comments, setComments}) => {
+const HomePage = ({getVideoBySearchTerm, featuredVideo, setFeaturedVideo, criteria, setCriteria, comments, setComments, user, token, getComments, comment, setComment}) => {
   // The "user" value from this Hook contains the decoded logged in user information (username, first name, id)
   // The "token" value is the JWT token that you will send in the header of any request requiring authentication
   //TODO: Add an AddCars Page to add a car for a logged in user's garage
@@ -31,8 +31,6 @@ const HomePage = ({getVideoBySearchTerm, featuredVideo, setFeaturedVideo, criter
   // }, [token]);
 
   const[text, setText] = useState('');
-  const[comment, setComment] = useState([]);
-  const [user, token] = useAuth();
   const[video_id, setVideoId] = useState('');
   const[likes, setLikes] = useState(0);
   const[dislikes, setDislikes] = useState(0);
@@ -50,10 +48,9 @@ const HomePage = ({getVideoBySearchTerm, featuredVideo, setFeaturedVideo, criter
 
         <div className = 'comment-text'>
 
-          <CommentForm comment = {comment} setComments = {setComments} featuredVideo = {featuredVideo} text = {text} setText = {setText} user = {user} token = {token} likes = {likes} setLikes = {setLikes} dislikes = {dislikes} setDislikes = {setDislikes} /> 
-          {/* comment-form */}
+          <CommentForm comment = {comment} comments = {comments} setComments = {setComments} featuredVideo = {featuredVideo} text = {text} setText = {setText} user = {user} token = {token} likes = {likes} setLikes = {setLikes} dislikes = {dislikes} setDislikes = {setDislikes} getComments = {getComments}/> 
 
-          <CommentList comment = {comment} setcomment = {setComment} comments = {comments} setComments = {setComments} user = {user} token = {token} likes = {likes} setLikes = {setLikes} dislikes = {dislikes} setDislikes = {setDislikes} text = {text} video_id = {video_id} setVideoId = {setVideoId} />
+          <CommentList comment = {comment} setcomment = {setComment} comments = {comments} setComments = {setComments} user = {user} token = {token} likes = {likes} setLikes = {setLikes} dislikes = {dislikes} setDislikes = {setDislikes} text = {text} video_id = {video_id} setVideoId = {setVideoId}  />
 
         </div>
 

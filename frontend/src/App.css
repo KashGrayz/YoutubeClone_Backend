@@ -136,15 +136,24 @@ button:hover {
   padding-top: 1rem;
 }
 
-.comments-text{
+.comment-text{
   display: flex; 
   flex-direction: column;
   grid-column: 1/2;
   grid-row: 3; 
+  width: 100%;
+}
+.comment-submit{
+  padding: 1rem;
 }
 
 .comment{
-  background-color: grey;
-  /* display: flex;  */
+  /* background-color: #de5a3515; */
+  /* border-style: solid;
+  border-radius: 2rem;
+  border-color: #de5a35b8; 
+  border-width: .2rem;  */
+  padding: 1rem; 
+  margin: 1rem;
 }
 

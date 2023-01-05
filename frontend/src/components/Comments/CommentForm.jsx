@@ -3,25 +3,10 @@ import axios from 'axios';
 import useAuth from "../../hooks/useAuth";
 
 
-export default function Comments({featuredVideo, handleSubmit, user, video_id, text, setText, likes, dislikes, token, comments, setComments}) {
-
-  async function getComments(){
-    try{
-      debugger;
-      let res = await axios.get(`http://127.0.0.1:8000/api/comments/${featuredVideo[0]?.id.videoId}/all/`);
-      debugger; 
-      console.log(res.data);
-      setComments(res.data); 
-    }
-    catch (error) {
-      console.log(error)
-      alert('Sorry! We have encountered an error posting your comment!');
-    }
-  }
+export default function Comments({featuredVideo, handleSubmit, user, video_id, text, setText, likes, dislikes, token, comments, setComments, getComments}) {
 
   function handleSubmit(event){
     event.preventDefault();
-    debugger; 
     let newComment = {
       user:user.id,
       // video_id: featuredVideo[0]?.id.videoId,
@@ -31,7 +16,9 @@ export default function Comments({featuredVideo, handleSubmit, user, video_id, t
   }
     postComment(newComment);
     console.log(newComment);
-    getComments();
+    // getComments();
+    // setComments(comments, newComment);
+    setText('')
 }
 
 
@@ -59,7 +46,7 @@ async function postComment(newComment) {
     
 
   return (
-    <div>
+    <div className = 'comment-submit'>
         <form onSubmit ={handleSubmit} className = 'search'>
             <input className = 'search-input' type = 'text' onChange={(event) => setText(event.target.value)} required value = {text}>
             </input>
