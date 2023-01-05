@@ -143,9 +143,8 @@ button:hover {
   grid-row: 3; 
 }
 
-
-.comments{
+.comment{
   background-color: grey;
-  display: flex; 
-
+  /* display: flex;  */
 }
+
