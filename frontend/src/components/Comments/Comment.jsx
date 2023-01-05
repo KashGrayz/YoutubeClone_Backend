@@ -8,7 +8,9 @@ export default function Comment({user, likes, dislikes, text}) {
     <div>
         <hr></hr>
         <div className = 'comment'>
-            <b>{user.username}</b>
+              <b>{user?(
+              user.username):<p></p>}
+            </b>
             <p>{text}</p>
             <p>Likes: {likes}</p>
             <p>Dislikes: {dislikes}</p>

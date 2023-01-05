@@ -13,14 +13,7 @@ export default function Comments({featuredVideo, handleSubmit, user, video_id, t
       dislikes: dislikes,
   }
     postComment(newComment);
-    console.log(newComment);
 
-    // getComments();
-    console.log(`comment: ${comments[0].text}`)
-    debugger; 
-    // setComments(comments, newComment);
-    setText('')
-    debugger; 
 }
 
 //adds a comment with body to the database.
@@ -40,6 +33,8 @@ async function postComment(newComment) {
       }
     setComments(comments, newComment);
     getComments();
+    setText('')
+
 
 
   }

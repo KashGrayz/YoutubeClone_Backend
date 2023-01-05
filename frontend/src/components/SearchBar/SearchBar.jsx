@@ -8,6 +8,8 @@ export default function SearchBar({criteria, setCriteria, getVideoBySearchTerm})
   function handleSubmit(event){
       event.preventDefault();
       getVideoBySearchTerm(criteria);
+      setCriteria('')
+
   }
     
   

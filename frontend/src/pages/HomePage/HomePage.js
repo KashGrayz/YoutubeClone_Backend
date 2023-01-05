@@ -8,7 +8,7 @@ import RelatedVideos from "../../components/RelatedVideos/RelatedVideos";
 import CommentForm from "../../components/Comments/CommentForm";
 import CommentList from "../../components/Comments/CommentList";
 
-const HomePage = ({getVideoBySearchTerm, featuredVideo, setFeaturedVideo, criteria, setCriteria, comments, setComments, user, token, getComments, comment, setComment}) => {
+const HomePage = ({getVideoBySearchTerm, featuredVideo, setFeaturedVideo, criteria, setCriteria, comments, setComments, user, token, getComments, comment, setComment, text, setText}) => {
   // The "user" value from this Hook contains the decoded logged in user information (username, first name, id)
   // The "token" value is the JWT token that you will send in the header of any request requiring authentication
   //TODO: Add an AddCars Page to add a car for a logged in user's garage
@@ -30,7 +30,6 @@ const HomePage = ({getVideoBySearchTerm, featuredVideo, setFeaturedVideo, criter
   //   fetchCars();
   // }, [token]);
 
-  const[text, setText] = useState('');
   const[video_id, setVideoId] = useState('');
   const[likes, setLikes] = useState(0);
   const[dislikes, setDislikes] = useState(0);

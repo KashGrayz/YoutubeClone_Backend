@@ -38,15 +38,20 @@ const[comments, setComments] = useState([]);
 //user is the whole object user
 const [user, token] = useAuth();
 
+//text is the comment content portion that is just the text.
+const[text, setText] = useState('');
 
 
 
 
 async function getComments(){
+
   try{
-    let res = await axios.get(`http://127.0.0.1:8000/api/comments/${featuredVideo[0]?.id.videoId}/all/`);
-    console.log(res.data);
-    setComments(res.data.reverse()); 
+  let res = await axios.get(`http://127.0.0.1:8000/api/comments/${featuredVideo[0]?.id.videoId}/all/`);
+  console.log(res.data);
+    
+      setComments(res.data.reverse()); 
+    
   }
   catch (error) {
     console.log(error)
@@ -57,10 +62,11 @@ async function getComments(){
 
 
 
+
 //retrieves a video by criteria/search term, sets as featuredVideo.
   async function getVideoBySearchTerm(searchTerm) {
     try{
-      let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?q=${searchTerm}&key=AIzaSyBbGwyZU134Y8hFVjyuTvl7U4mmP9GYQ5Y`);
+      let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?q=${searchTerm}&key=${process.env.REACT_APP_API_KEY}`);
       if (response.status === 400){
         alert('The term you searched for does not exist. Please try another search.');
       }
@@ -94,14 +100,14 @@ useEffect(() => {
 
         <Route path="/" element={
           <PrivateRoute>
-              <HomePage featuredVideo = {featuredVideo} setFeaturedVideo = {setFeaturedVideo} getVideoBySearchTerm = {getVideoBySearchTerm} criteria = {criteria} setCriteria = {setCriteria} comments = {comments} setComments = {setComments} user = {user} token = {token} getComments = {getComments} comment = {comment} setComment = {setComment} />
+              <HomePage featuredVideo = {featuredVideo} setFeaturedVideo = {setFeaturedVideo} getVideoBySearchTerm = {getVideoBySearchTerm} criteria = {criteria} setCriteria = {setCriteria} comments = {comments} setComments = {setComments} user = {user} token = {token} getComments = {getComments} comment = {comment} setComment = {setComment} text = {text} setText = {setText} />
           </PrivateRoute>}/>
 
       <Route path="/register" element={<RegisterPage/>} />
 
       <Route path="/login" element={<LoginPage/>} />
 
-      <Route path="/landing" element={<LandingPage featuredVideo = {featuredVideo} setFeaturedVideo = {setFeaturedVideo} getVideoBySearchTerm = {getVideoBySearchTerm} criteria = {criteria} setCriteria = {setCriteria} />} />
+      <Route path="/landing" element={<LandingPage featuredVideo = {featuredVideo} setFeaturedVideo = {setFeaturedVideo} getVideoBySearchTerm = {getVideoBySearchTerm} criteria = {criteria} setCriteria = {setCriteria} comment = {comment} setcomment = {setComment} comments = {comments} setComments = {setComments} text = {text} setText = {setText} />} />
       </Routes>
       
       {/* <Footer /> */}
