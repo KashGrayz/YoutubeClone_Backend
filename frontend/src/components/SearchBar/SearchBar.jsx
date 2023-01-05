@@ -1,13 +1,8 @@
-import React, { useState , useEffect} from 'react';
-
-import { useDebugValue } from 'react';
-
-
 
 //fetch videos from the YouTube DATA API based on a provided search string and display in a centered iframe. 
 
 
-export default function SearchPage({criteria, setCriteria, getVideoBySearchTerm, featuredVideo, setFeaturedVideo}) {
+export default function SearchBar({criteria, setCriteria, getVideoBySearchTerm}) {
 
 
   function handleSubmit(event){
