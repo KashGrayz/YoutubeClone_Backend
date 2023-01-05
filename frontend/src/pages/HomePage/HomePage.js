@@ -4,17 +4,17 @@ import useAuth from "../../hooks/useAuth";
 
 
 import axios from "axios";
-import SearchPage from "../../components/SearchPage/SearchPage";
 import VideoPlayer from "../../components/VideoPlayer/VideoPlayer";
 import RelatedVideos from "../../components/RelatedVideos/RelatedVideos";
 import Comments from "../../components/Comments/Comments";
+import SearchBar from "../../components/SearchBar/SearchBar";
 
 
-const HomePage = ({getVideoBySearchTerm, featuredVideo, setFeaturedVideo, criteria, setCriteria}) => {
+const HomePage = ({getVideoBySearchTerm, featuredVideo, setFeaturedVideo, criteria, setCriteria, user, token}) => {
   // The "user" value from this Hook contains the decoded logged in user information (username, first name, id)
   // The "token" value is the JWT token that you will send in the header of any request requiring authentication
   //TODO: Add an AddCars Page to add a car for a logged in user's garage
-  const [user, token] = useAuth();
+  
   // const [cars, setCars] = useState([]);
 
   // useEffect(() => {
@@ -41,7 +41,7 @@ const HomePage = ({getVideoBySearchTerm, featuredVideo, setFeaturedVideo, criter
   return (
     <div className = 'featured-and-related'>
  
-        <SearchPage criteria = {criteria} setCriteria = {setCriteria} getVideoBySearchTerm = {getVideoBySearchTerm} featuredVideo = {featuredVideo} setFeaturedVideo = {setFeaturedVideo}/>
+        <SearchBar criteria = {criteria} setCriteria = {setCriteria} getVideoBySearchTerm = {getVideoBySearchTerm} featuredVideo = {featuredVideo} setFeaturedVideo = {setFeaturedVideo}/>
       
         <h3 className = 'welcome'>Welcome {user.username}!</h3>
         
