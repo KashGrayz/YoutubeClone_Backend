@@ -19,8 +19,6 @@ import useAuth from "./hooks/useAuth";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import LandingPage from "./pages/LandingPage/LandingPage";
-import useAuth
- from "./hooks/useAuth";
 //sets central content in homepage according to search by search term input in form. Uses default to supply inititial value.
 
 

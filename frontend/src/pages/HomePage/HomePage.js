@@ -48,7 +48,7 @@ const HomePage = ({getVideoBySearchTerm, featuredVideo, setFeaturedVideo, criter
 
         <div className = 'comment-text'>
 
-          <CommentForm comment = {comment} comments = {comments} setComments = {setComments} featuredVideo = {featuredVideo} text = {text} setText = {setText} user = {user} token = {token} likes = {likes} setLikes = {setLikes} dislikes = {dislikes} setDislikes = {setDislikes} getComments = {getComments}/> 
+          <CommentForm comment = {comment} comments = {comments} setComments = {setComments} featuredVideo = {featuredVideo} text = {text} setText = {setText} user = {user} token = {token} likes = {likes} setLikes = {setLikes} dislikes = {dislikes} setDislikes = {setDislikes} getComments = {getComments} setComment = {setComment} /> 
 
           <CommentList comment = {comment} setcomment = {setComment} comments = {comments} setComments = {setComments} user = {user} token = {token} likes = {likes} setLikes = {setLikes} dislikes = {dislikes} setDislikes = {setDislikes} text = {text} video_id = {video_id} setVideoId = {setVideoId}  />
 

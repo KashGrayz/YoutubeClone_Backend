@@ -1,27 +1,29 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import useAuth from "../../hooks/useAuth";
 
 
-export default function Comments({featuredVideo, handleSubmit, user, video_id, text, setText, likes, dislikes, token, comments, setComments, getComments}) {
+export default function Comments({featuredVideo, handleSubmit, user, video_id, text, setText, likes, dislikes, token, comments, setComments, setComment, getComments}) {
 
   function handleSubmit(event){
     event.preventDefault();
     let newComment = {
       user:user.id,
-      // video_id: featuredVideo[0]?.id.videoId,
       text: text,
       likes: likes,
       dislikes: dislikes,
   }
     postComment(newComment);
     console.log(newComment);
+
     // getComments();
+    console.log(`comment: ${comments[0].text}`)
+    debugger; 
     // setComments(comments, newComment);
     setText('')
+    debugger; 
 }
 
-
+//adds a comment with body to the database.
 async function postComment(newComment) {
 
   try{
@@ -36,11 +38,16 @@ async function postComment(newComment) {
       else{
         console.log(`else statement for not 201 ${res}`);
       }
+    setComments(comments, newComment);
+    getComments();
+
+
   }
   catch (error) {
     console.log(error)
     alert('Sorry! We have encountered an error processing your request!');
     }
+
   }
 
     
